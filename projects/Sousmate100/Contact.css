@@ -1,0 +1,38 @@
+.topblock {
+    display:flex;
+}
+.topblock > div {
+    width: 10%;
+    flex-wrap: inherit;
+    justify-content: space-between;
+    border-left: solid 3px  rgb(146, 173, 104);
+    margin: 10px;
+    padding: 10px;
+    background: rgb(158, 219, 65);
+}
+
+section {
+    display: flex;
+}
+section div {
+    flex-wrap: inherit;
+}
+form {
+    flex-wrap: inherit;
+    display: flex;
+    width: 40%;
+    height: 35%;
+    text-align: left;
+    padding: 10px;
+}
+form > div > input {
+    width: 50%;
+    height: 10%;
+}
+#submit {
+    width: 50%;
+    height: 15%;
+}
+a > div{
+    margin-left: 30px;
+}
