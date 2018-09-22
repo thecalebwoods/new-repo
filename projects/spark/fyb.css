@@ -1,0 +1,62 @@
+body{
+    height: 100vh;
+    width: 100vw;
+}
+header {
+    border: black solid 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    height: 20%;
+    width: 80%;
+    margin: 10px auto;
+    display:flex;
+    flex-direction: column;
+}
+header > h1 {
+    border: black solid 2px;
+    margin: 0;
+    padding: 5px;
+}
+header > ul {
+    border: black solid 2px;
+    display:flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+}
+header > ul > li {
+    border: black solid 2px;
+}
+
+section {
+    display:flex;
+    border: black solid 2px;
+    font-family: 'Courier New', Courier, monospace; 
+    height: 60%;
+    width: 80%;
+    margin: 10px auto;
+    flex-direction: column;
+}
+section > h1 {
+    text-align: center;
+    height: 15%;
+}
+section > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 85%;
+}
+section > div > div {
+    width: 25%;
+    text-align: center;
+}
+
+
+
+footer {
+    border: black solid 2px;
+    font-family: 'Courier New', Courier, monospace; 
+    height: 20%;
+    width: 80%;
+    margin: 10px auto;
+}
