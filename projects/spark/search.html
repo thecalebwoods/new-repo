@@ -5,13 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    
+    <link href="./howto.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header>
-
+        <h1>Welcome</h1>
+            <ul>
+                <li>How To</li>
+                <li>Search</li>
+                <li>About</li>
+            </ul>
+        <div>
+            <img>
+        </div>
     </header>
+    <label>City: </label>
+    <input id="cityBrew" type="text">
+    <label>State: </label>
+    <input id="stateBrew" type="text">
+    <button id="requestBrew" onclick="getUrl()">Request Your Brew</button>
     <div id="contianer"></div>
+    <div>
+        <div class="page">1</div>
+        <div class="page">2</div>
+        <div class="page">3</div>
+    </div>
     <script src="./fyb.js"></script>
     <footer>
 
