@@ -1,58 +1,105 @@
 body{
     height: 100vh;
     text-align: center;
+    background: rgb(238, 233, 233);
+    margin: 0 auto;
 }
 header {
-    border: black solid 2px;
     font-family: Verdana, Geneva, Tahoma, sans-serif; 
     height: 20%;
-    width: 80%;
-    margin: 10px auto;
+    margin: 0 auto;
+    padding-top: 20px auto;
     display:flex;
     flex-direction: column;
+    background: rgba(185, 184, 184, 0.568);
 }
 header > h1 {
     text-align: left;
-    border: black solid 2px;
-    margin: 0;
+    margin: 10px;
+    border-left: solid black;
     padding: 5px;
+    color: rgb(61, 18, 12);
 }
 header > ul {
-    border: black solid 2px;
     display:flex;
     justify-content: space-around;
     list-style: none;
-    padding: 0;
+    padding: 5px;
+    border-top: dashed rgba(251, 233, 152, .5) 4px;
 }
 header > ul > li {
-    border: black solid 2px;
+    font-family: 'Courier New', Courier, monospace; 
+    background: rgb(61, 18, 12);
+    border-radius: 5%;
+    color: rgb(241, 241, 241);
+    padding: 5px;
+}
+#brick {
+    background-image: url('http://webdesignertricks.com/wp-content/uploads/2016/04/Brick-Wall-Texture-.jpg');
+    width: 80%;
+    margin: 0 auto;
+    border-left:solid 25px rgb(61, 18, 12);
+    border-right:solid 5px rgb(61, 18, 12);
+}
+#labelBrewCon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#labelBrewCon > .labelBrew {
+    background:  rgb(61, 18, 12);
+    border-radius: 5%;
+}
+
+label {
+    font-family: 'Courier New', Courier, monospace; 
+    margin: 10x;
+    color: rgb(241, 241, 241);
+    font-size: 1.5rem;
+    padding-left: 10px;
+}
+input {
+    margin: 10px;
 }
 section {
     display:flex;
-    border: black solid 2px;
     font-family: 'Courier New', Courier, monospace; 
     height: 60%;
-    width: 80%;
     margin: 10px auto;
     flex-direction: column;
 }
 section > h1 {
+    color: rgb(238, 233, 233);
     text-align: center;
-    height: 15%;
+    padding: 10px;
+    background:  rgb(61, 18, 12);
+    border-radius: 10%;
+    margin: 0 auto;
 }
 section > div {
+    font-family: 'Courier New', Courier, monospace; 
+    color: rgb(238, 233, 233);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     height: 85%;
+    padding: 5px;
+    background:  rgb(61, 18, 12);
+    border-radius: 10%;
+    margin: 10px auto;
 }
 section > div > div {
+    font-family: 'Courier New', Courier, monospace; 
     width: 25%;
     text-align: center;
+    color: rgb(238, 233, 233);
 }
-
 button#requestBrew {
-    width: 80%;
+    background: rgb(61, 18, 12);
+    color:rgb(238, 233, 233);
+    border-radius: 10%;
+    width: 100%;
 }
 
 #contianer {
@@ -60,10 +107,9 @@ button#requestBrew {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 80%;
-    border: black solid 2px;
+    border-bottom: dashed rgb(250, 249, 172) 4px;
     margin: 10px auto;
-    overflow: scroll;
+    height: 60%;
 }
 
 div#contianer > div.bar-container {
@@ -71,14 +117,19 @@ div#contianer > div.bar-container {
     display: flex;
     flex-direction: column;
     width: 25%;
+    padding: 5px;
     margin: 5px;
     text-align: center;
+    border-top: dashed rgb(250, 184, 172) 8px;
+    border-bottom: dashed rgb(255, 232, 219) 2px;
+    border-radius: 5%;
+    background: rgba(71, 19, 12, 0.849);
+    color: rgb(241, 241, 241);
 }
 
 footer {
-    border: black solid 2px;
-    font-family: 'Courier New', Courier, monospace; 
+    font-family: 'Courier New', Courier, monospace;
     height: 20%;
-    width: 80%;
     margin: 10px auto;
+    background: rgba(185, 184, 184, 0.568);
 }

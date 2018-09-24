@@ -22,6 +22,7 @@ let cityText;
 let stateText;
 
 let getUrl = function(){
+    document.getElementById('contianer').innerText = "";
     cityText = document.getElementById('cityBrew').value;
     stateText = document.getElementById('stateBrew').value;
     apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=1&per_page=50";
