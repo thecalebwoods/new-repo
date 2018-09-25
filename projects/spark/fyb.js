@@ -56,8 +56,8 @@ let updateContent = function(){
         barnameDiv.classList.add('bar-name');
         barnameDiv.innerText = bA.name;
     
-        let barInfo = document.createElement('div');
-        barInfo.classList.add('bar-info');
+        let barLo = document.createElement('div');
+        barLo.classList.add('bar-loc');
     
         let barCity = document.createElement('div');
         barCity.classList.add('bar-city');
@@ -66,14 +66,31 @@ let updateContent = function(){
         let barState = document.createElement('div');
         barState.classList.add('bar-state');
         barState.innerText = bA.state;
-    
+
+        let barContact = document.createElement('div');
+        barContact.classList.add('bar-contact');
+
+        let linkCon = document.createElement('div');
+        linkCon.classList.add('website-con');
+        
+        let webText = document.createElement('a');
+        webText.href = bA.website_url;
+        webText.innerText = 'Check out their website!'
+
+        let phoneNum = document.createElement('div');
+        phoneNum.classList.add('phone');
+        phoneNum.innerText = bA.phone;
     
     
         con.appendChild(barCon);
         barCon.appendChild(barnameDiv);
-        barCon.appendChild(barInfo);
-        barInfo.appendChild(barCity);
-        barInfo.appendChild(barState);
+        barCon.appendChild(barLo);
+        barLo.appendChild(barCity);
+        barLo.appendChild(barState);
+        barCon.appendChild(barContact);
+        barContact.appendChild(linkCon);
+        linkCon.appendChild(webText);
+        barContact.appendChild(phoneNum);
         }
 }
 
