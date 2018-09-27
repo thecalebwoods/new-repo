@@ -19,7 +19,9 @@
             <img>
         </div>
     </header>
-    <div>TOP</div>
+    <div id="TOP">
+        <a href=#top>Top Of Page</a>
+    </div>
     <div id="conCon">
         <div id="labelBrewCon">
             <div class="labelBrew">
@@ -31,17 +33,33 @@
                 <input id="stateBrew" type="text">
             </div>
         </div>
-        <button id="requestBrew" onclick="getUrl()">Request Your Brew</button>
+        <div id="pagesCon">
+            <button id="requestBrew" onclick="getUrl()">Request Your Brew</button>
+        </div>
+        <div id="pageNum">
+            <a class="page" onclick="getUrl()">(1)</a>
+             <a class="page" onclick="apiPage2()">(2)</a>
+             <a class="page" onclick="apiPage3()">(3)</a>
+             <a class="page" onclick="apiPage4()">(4)</a>
+             <a class="page" onclick="apiPage5()">(5)</a>
+        </div>
         <div id="contianer"></div>
-        <div>
-            <div class="page">1</div>
-            <div class="page">2</div>
-            <div class="page">3</div>
+        <div id="pageNum">
+           <a class="page" onclick="getUrl()">(1)</a>
+            <a class="page" onclick="apiPage2()">(2)</a>
+            <a class="page" onclick="apiPage3()">(3)</a>
+            <a class="page" onclick="apiPage4()">(4)</a>
+            <a class="page" onclick="apiPage5()">(5)</a>
         </div>
         <script src="./fyb.js"></script>
-        <footer>
-
-        </footer>
     </div>
+    <footer>
+            <div id="theTable">
+            <div id="table1">
+            </div>
+            <div id="table2">
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

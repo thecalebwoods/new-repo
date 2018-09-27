@@ -25,7 +25,35 @@ let getUrl = function(){
     document.getElementById('contianer').innerText = "";
     cityText = document.getElementById('cityBrew').value;
     stateText = document.getElementById('stateBrew').value;
-    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=1&per_page=50";
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=1&per_page=30";
+    getBrewAsync();
+}
+let apiPage2 = function(){
+    document.getElementById('contianer').innerText = "";
+    cityText = document.getElementById('cityBrew').value;
+    stateText = document.getElementById('stateBrew').value;
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=2&per_page=30";
+    getBrewAsync();
+}
+let apiPage3 = function(){
+    document.getElementById('contianer').innerText = "";
+    cityText = document.getElementById('cityBrew').value;
+    stateText = document.getElementById('stateBrew').value;
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=3&per_page=30";
+    getBrewAsync();
+}
+let apiPage4 = function(){
+    document.getElementById('contianer').innerText = "";
+    cityText = document.getElementById('cityBrew').value;
+    stateText = document.getElementById('stateBrew').value;
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=4&per_page=30";
+    getBrewAsync();
+}
+let apiPage5 = function(){
+    document.getElementById('contianer').innerText = "";
+    cityText = document.getElementById('cityBrew').value;
+    stateText = document.getElementById('stateBrew').value;
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=5&per_page=30";
     getBrewAsync();
 }
 
@@ -41,6 +69,7 @@ let getBrewAsync = async function(){
     }
 }
 
+
 let updateContent = function(){
 
     for(let i = 0; i < breweryArr.length; i++){
@@ -48,14 +77,15 @@ let updateContent = function(){
         let con = document.getElementById('contianer');
     
         let bA = breweryArr[i];
-        
+
         let barCon = document.createElement('div');
         barCon.classList.add('bar-container');
-    
+        barCon.classList.add('hidden');
+
         let barnameDiv = document.createElement('div');
         barnameDiv.classList.add('bar-name');
         barnameDiv.innerText = bA.name;
-    
+        
         let barLo = document.createElement('div');
         barLo.classList.add('bar-loc');
     
@@ -91,6 +121,7 @@ let updateContent = function(){
         barContact.appendChild(linkCon);
         linkCon.appendChild(webText);
         barContact.appendChild(phoneNum);
+
+        setTimeout(() => barCon.classList.remove('hidden'), 200*i);
         }
 }
-
