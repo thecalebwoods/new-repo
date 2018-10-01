@@ -1,59 +1,44 @@
 
-
-// let apiBrew = "https://api.openbrewerydb.org/breweries?by_city=chicago";
-
-// let getBrewAsync = async function(){
-//     try {
-//     const response = await fetch(apiBrew)
-//     state = (await response.json());
-//     updateContent();
-//     } catch (err) {
-//     console.log('Something went wrong. :(');
-//     console.log(err);    
-//     }
-// }
-
-// let updateContent = function(){
-//     console.log(state);
-// }
 let apiBrew;
 let breweryArr;
 let cityText;
 let stateText;
+let nameText;
 
 let getUrl = function(){
     document.getElementById('contianer').innerText = "";
     cityText = document.getElementById('cityBrew').value;
     stateText = document.getElementById('stateBrew').value;
-    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=1&per_page=30";
+    nameText = document.getElementById('nameBrew').value;
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_name=" + nameText + "&by_city=" + cityText + "&by_state=" + stateText + "&page=1&per_page=30";
     getBrewAsync();
 }
 let apiPage2 = function(){
     document.getElementById('contianer').innerText = "";
     cityText = document.getElementById('cityBrew').value;
     stateText = document.getElementById('stateBrew').value;
-    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=2&per_page=30";
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_name=" + nameText + "&by_city=" + cityText + "&by_state=" + stateText + "&page=2&per_page=30";
     getBrewAsync();
 }
 let apiPage3 = function(){
     document.getElementById('contianer').innerText = "";
     cityText = document.getElementById('cityBrew').value;
     stateText = document.getElementById('stateBrew').value;
-    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=3&per_page=30";
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_name=" + nameText + "&by_city=" + cityText + "&by_state=" + stateText + "&page=3&per_page=30";
     getBrewAsync();
 }
 let apiPage4 = function(){
     document.getElementById('contianer').innerText = "";
     cityText = document.getElementById('cityBrew').value;
     stateText = document.getElementById('stateBrew').value;
-    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=4&per_page=30";
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_name=" + nameText + "&by_city=" + cityText + "&by_state=" + stateText + "&page=4&per_page=30";
     getBrewAsync();
 }
 let apiPage5 = function(){
     document.getElementById('contianer').innerText = "";
     cityText = document.getElementById('cityBrew').value;
     stateText = document.getElementById('stateBrew').value;
-    apiBrew = "https://api.openbrewerydb.org/breweries?by_city=" + cityText + "&by_state=" + stateText + "&page=5&per_page=30";
+    apiBrew = "https://api.openbrewerydb.org/breweries?by_name=" + nameText + "&by_city=" + cityText + "&by_state=" + stateText + "&page=5&per_page=30";
     getBrewAsync();
 }
 
@@ -123,5 +108,5 @@ let updateContent = function(){
         barContact.appendChild(phoneNum);
 
         setTimeout(() => barCon.classList.remove('hidden'), 200*i);
-        }
+    }
 }
