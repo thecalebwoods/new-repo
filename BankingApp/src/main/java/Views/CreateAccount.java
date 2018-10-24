@@ -30,4 +30,24 @@ public class CreateAccount {
 		SignUp.signUpUser(accounts);
 	}
 	
+	
+	
+	public static void createJoAcc(Customers cust) {
+		Scanner YourAcc = new Scanner(System.in);
+		
+		CustomerServ custServ = new CustomerServ();
+
+
+		Accounts accounts = new Accounts();
+		double balance = 0;
+		long id = 0;
+		String name = null;
+		
+		accounts.setBalance(0);
+
+		Accounts users = custServ.save(accounts);
+		
+		CreateJoAcc.signJointUpUser(accounts,cust);
+	}
+	
 }

@@ -16,7 +16,7 @@ public class Home {
 	int input = BankScanner.getInput(2);
 	
 	switch (input){
-	case 1: userOrEmploy(); break;
+	case 1: inputIsEm(); break;
 	case 2: inputIsUser(); break;
 	}
    }
@@ -25,17 +25,11 @@ public class Home {
   	System.out.println("++++++++++++++++++++++++++++++++++");
   	System.out.println("++++++   Welcome Employee!  ++++++");
   	System.out.println("++++++++++++++++++++++++++++++++++");
-  	System.out.println("++++++++++++++ Sign In +++++++++++");
-  	System.out.println("+++++++++  Please Type(1) ++++++++");
-  	System.out.println("++++++++++++++++++++++++++++++++++");
+  	SignIn.loading();
   	
-	int input = BankScanner.getInput(1);
-	
-	switch (input){
-//	case 1: SignIn.signInEmployee() ; break;
+  	SignInEmp.signInEmploy(null);
 	}
   	
- }
 	public static void inputIsUser() {
 	System.out.println("");
 	System.out.println("++++++++++++++++++++++++++++++++++");

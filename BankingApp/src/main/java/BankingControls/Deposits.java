@@ -9,26 +9,69 @@ import Utilities.CustomerDao;
 import Utilities.CustomerServ;
 import Utilities.UserSerialize;
 import Views.BankScanner;
+import Views.CreateAccount;
 import Views.Home;
+import Views.SignIn;
 import Views.UserAccounts;
 
 public class Deposits {
 
 public static void depositMoneyToo(Customers cust) {
 		
-		CustomerServ custServ = new CustomerServ();
-	
-		Scanner depo = new Scanner(System.in);
+		CustomerServ custServ = new CustomerServ();	
+
+		System.out.println("++++++++++++++++++++++++++++++++++");
+		System.out.println("++++++                     +++++++");
+		System.out.println("++++++    Joint Acc (1)    +++++++");
+		System.out.println("++++++     Priv Acc (2)    +++++++");
+		System.out.println("++++++                     +++++++");
+		System.out.println("++++++++++++++++++++++++++++++++++");
 		
+		int input = BankScanner.getInput(2);
+		
+		switch (input){
+		case 1: 
+		
+		boolean exists = CustomerDao.isJointPresent(cust.getJoID());
+		
+		if(exists = true) {
+			Accounts accounts = custServ.getAccID(cust.getJoID());
+			System.out.println("++++++++++++++++++++++++++++++++++");
+			System.out.println("++++   Hello " + cust.getUser() + "!");
+			System.out.println("++++++++++++++++++++++++++++++++++");
+			deposit(accounts, cust);
+
+		}else {
+			System.out.println("++++++++++++++++++++++++++++++++++");
+			System.out.println("++++                         +++++");
+			System.out.println("++++          Sorry!         +++++");
+			System.out.println("++++        ---------        +++++");
+			System.out.println("++++        This user        +++++");
+			System.out.println("++++     does not have a     +++++");
+			System.out.println("++++      Joint Account      +++++");
+			System.out.println("++++                         +++++");
+			System.out.println("++++++++++++++++++++++++++++++++++");
+		
+			System.out.println("");
+			System.out.println("++++++++++++++++++++++++++++++++++");
+			System.out.print("+++++++++++ Going Back");
+			
+			SignIn.loading();
+		}; break;
+		
+		case 2: Accounts accounts = custServ.getAccID(cust.getPrivID());
+				deposit(accounts, cust); break;
+		}
+	}
+
+	public static void deposit(Accounts accounts, Customers cust) {
+
+		Scanner depo = new Scanner(System.in);
+
 		double amountIn = 0.0;
 		double balance1 =0.0;
 		long Id = 0;
 		long idFile = 0;
-		System.out.println("hello");
-		
-		Accounts accounts = custServ.getAccID(cust.getPrivID());;
-		
-		
 		
 		balance1 = accounts.getBalance();
 		idFile = accounts.getId();
@@ -57,34 +100,7 @@ public static void depositMoneyToo(Customers cust) {
 		System.out.println("");
 		System.out.println("++++++++++++++++++++++++++++++++++");
 		System.out.print("+++++++++++ Going Back");
-
-		try {
-			Thread.sleep(1500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.print(".");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.print(".");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.print(".");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		SignIn.loading();
 		
 		UserAccounts.userAccOptions(cust);
 		

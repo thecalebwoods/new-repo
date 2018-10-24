@@ -20,11 +20,12 @@ public class UserAccounts {
 		System.out.println("+++++  4.Transfer          +++++++");
 		System.out.println("+++++  5.Check Joint Acc   +++++++");
 		System.out.println("+++++  6.Create Joint Acc  +++++++");
+		System.out.println("+++++  7.Done              +++++++");
 		System.out.println("+++++                      +++++++");
 		System.out.println("++++++++++++++++++++++++++++++++++");
 		System.out.print("+++++ Insert # Here: ");
 		
-		int input = BankScanner.getInput(6);
+		int input = BankScanner.getInput(7);
 		
 		switch (input){
 		case 1: CheckBalance.checkBalView(cust);  break;
@@ -32,7 +33,8 @@ public class UserAccounts {
 		case 3: Withdraw.withdrawMoneyFrom(cust);break;
 		case 4: Transfer.transferMoneyFrom(cust);break;
 		case 5: CheckJointAccount.checkJoBalView(cust);break;
-		case 6: CreateJoAcc.signJointUpUser(cust);break;
+		case 6: CreateAccount.createJoAcc(cust);break;
+		case 7: return;
 		}
 	}
 }

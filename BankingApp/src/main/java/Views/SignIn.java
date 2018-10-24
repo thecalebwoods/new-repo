@@ -28,7 +28,7 @@ public class SignIn {
 			
 //			cust.setUser(user);
 			
-			boolean exists = custServ.userExist(user);
+		boolean exists = custServ.userExist(user);
 			
 			if(exists = true) {
 				

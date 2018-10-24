@@ -6,66 +6,118 @@ import Users.Accounts;
 import Users.Customers;
 import Users.JointAcc;
 import Utilities.UserSerialize;
+import Utilities.CustomerDao;
+import Utilities.CustomerServ;
 import Utilities.JoSerialize;
 
 public class CreateJoAcc {
 	
-public static void signJointUpUser(Customers cust) {
+public static void signJointUpUser(Accounts acc, Customers cust) {
+	
+	CustomerServ custServ = new CustomerServ();
+
 	Scanner UserPass = new Scanner(System.in);
+	
 		String user = null;
 		int joIn;
-		String fileUser1 = null;
-		String fileUser2 = null;
 		String jointName = null;
 		long jAccID = 0;
 		int x = 0;
 		
 
+		System.out.println("++++++++++++++++++++++++++++++++++");
+		System.out.println("++++++  Your UserName: " + cust.getUser().toUpperCase());
+	
+		cust.setJoID(acc.getId());
 		
 		System.out.println("++++++++++++++++++++++++++++++++++");
-		System.out.print("++++++  Your UserName: " + cust.getUser().toUpperCase());
+		System.out.println("++++++ Your Joint Id: " + cust.getJoID());
+
+		CustomerDao.updateCust(cust);
 		
-		jAccID = (int)(Math.random() * 10000);
+		addOtherUser(acc, cust);
 		
-		System.out.println("++++++++++++++++++++++++++++++++++");
-		System.out.println("+++++++++ Your Acc Id: " + jAccID);
-		System.out.println("++++++++++++++++++++++++++++++++++");
 		
-		cust.setJoID(jAccID);
+}
+
+public static 	void addOtherUser(Accounts acc, Customers cust) {
+	
+	CustomerServ custServ = new CustomerServ();
+
+	String user = null;
+	int x = 0;
+	
+	while(x == 0) {
 		
-		UserSerialize.saveUserFile(cust);
-		
-	while((x == 0)) {
 		Scanner usersIn = new Scanner(System.in);
 		
 		System.out.println("++++++++++++++++++++++++++++++++++");
-		System.out.print("++++++   User Name: ");
+		System.out.print("++++++ Other User Name: ");
 		user = usersIn.nextLine();
 		
+		boolean isNull = CustomerDao.isJointNull(user);
+		if( isNull == true) {
+			
+		boolean exists = custServ.userExist(user);
+		System.out.println("not null");
 		
-		Customers custJo = UserSerialize.loadUserFile(user);
-		custJo.setJoID(cust.getJoID());
-		
-		System.out.println(custJo.getJoID());
-		
-		UserSerialize.saveUserFile(custJo);
+			if(exists == true) {
+				
+				Customers custOther = custServ.signInCust(user);
+				
+				custOther.setJoID(acc.getId());
+				System.out.println("++++++++++++++++++++++++++++++++++");
+				System.out.println("++++                         +++++");
+				System.out.println("++++       Joint Account     +++++");
+				System.out.println("++++          Created!       +++++");
+				System.out.println("++++++++++++++++++++++++++++++++++");
+				
+				CustomerDao.updateCust(custOther);
+				
+				System.out.println("++++     Create Another      +++++");
+				System.out.println("++++  Yes(1)          No(0)  +++++");
 
-		System.out.println("++++++++++++++++++++++++++++++++++");			
-		System.out.println("++++++ Add another or Done +++++++");
-		System.out.println("+++++++++ (0) ++++++  (1)  +++++++");
-	
-		joIn = usersIn.nextInt();
+				int input = BankScanner.getInput(2);
+				
+				switch (input){
+				case 0: x++; break;
+				case 1: x = 0 ; break;
+				}
+			
+			}else {
+				System.out.println("++++++++++++++++++++++++++++++++++");
+				System.out.println("++++                         +++++");
+				System.out.println("++++          Sorry!         +++++");
+				System.out.println("++++         -------         +++++");
+				System.out.println("++++     The Username you    +++++");
+				System.out.println("++++ inserted wasn't correct +++++");
+				System.out.println("++++    Please Try Again!    +++++");
+				System.out.println("++++                         +++++");
+				System.out.println("++++++++++++++++++++++++++++++++++");
+			
+				x = 0;
+			}
 		
-		x++;
+		} else {
+		System.out.println("++++++++++++++++++++++++++++++++++");
+		System.out.println("++++                         +++++");
+		System.out.println("++++         Sorry!          +++++");
+		System.out.println("++++        -------          +++++");
+		System.out.println("++++      The Username       +++++");
+		System.out.println("++++       already has       +++++");
+		System.out.println("++++     a Joint Account!    +++++");
+		System.out.println("++++        -------          +++++");
+		System.out.println("++++    Please Try Again!    +++++");
+		System.out.println("++++                         +++++");
+		System.out.println("++++++++++++++++++++++++++++++++++");
+	
+		x = 0;
+		}
+		
+		
 	}
 	
-		JointAcc joint = new JointAcc();
-		joint.setjAccID(cust.getJoID());
-		joint.setJointName(jointName);
-		
-		
-		JoSerialize.saveJoFile(joint);
-		
+				
 		System.out.println("");
 		System.out.println("++++++++++++++++++++++++++++++++++");
 		System.out.print("+++++++++++ Going Back");
@@ -98,9 +150,9 @@ public static void signJointUpUser(Customers cust) {
 			e.printStackTrace();
 		}
 		
+		
 		UserAccounts.userAccOptions(cust);
 		
-		
-}
-		
+	}
+				
 }

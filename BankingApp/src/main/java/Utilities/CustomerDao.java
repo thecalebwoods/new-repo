@@ -11,6 +11,7 @@ import java.util.List;
 
 import Users.Accounts;
 import Users.Customers;
+import adminEmployees.Employees;
 
 
 public class CustomerDao {
@@ -44,7 +45,6 @@ public class CustomerDao {
 		    public static ResultSet junctionCustAcc(Customers user, Accounts account){
 		    	try (Connection conn = ConnectingBankUtil.getConnection()) {
 					String query = "INSERT INTO junction (user_request, acc_receive) VALUES (?, ?) RETURNING id";
-					System.out.println("running 2");
 					PreparedStatement test = conn.prepareStatement(query);
 					test.setLong(1, user.getID());
 					test.setLong(2, account.getId());
@@ -64,7 +64,6 @@ public class CustomerDao {
 		    public static Accounts createAccount(Accounts acc) {
 		    	try (Connection conn = ConnectingBankUtil.getConnection()) {
 					String query = "INSERT INTO accounts (balance) VALUES (?) RETURNING id";
-					System.out.println("running 2");
 					PreparedStatement test = conn.prepareStatement(query);
 					test.setDouble(1, acc.getBalance());
 					
@@ -80,11 +79,9 @@ public class CustomerDao {
 			}
 //		    
 			public static Customers createCustomer(Customers users) {
-				System.out.println("starting");
 				
 				try (Connection conn = ConnectingBankUtil.getConnection()) {
-					String query = "INSERT INTO customers (user_name, pass_word, phone, email, full_name, priv_acc, joint_acc) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id";
-					System.out.println("running 2");
+					String query = "INSERT INTO customers (user_name, pass_word, phone, email, full_name, priv_acc) VALUES (?, ?, ?, ?, ?, ?) RETURNING id";
 					PreparedStatement test = conn.prepareStatement(query);
 					test.setString(1, users.getUser());
 					test.setString(2, users.getPass());
@@ -92,7 +89,6 @@ public class CustomerDao {
 					test.setString(4, users.getNumber());
 					test.setString(5, users.getName());
 					test.setInt(6, (int) users.getPrivID());
-					test.setInt(7, users.getJoID());
 
 					
 					// ResultSet starts before the first result, so we need to call next at least once
@@ -117,7 +113,6 @@ public class CustomerDao {
 					statement.setString(1, pass);
 					
 					ResultSet resultSet = statement.executeQuery();
-						System.out.println("correct");
 					
 						return resultSet.next();
 						
@@ -126,6 +121,111 @@ public class CustomerDao {
 					System.out.println("try again");
 					return false;
 				}
+			}
+			
+			public static void getAllUser() {
+				
+				int x= 0;
+				
+				String query = "SELECT user_name FROM customers";
+				try(Connection conn = ConnectingBankUtil.getConnection()) {
+					PreparedStatement statement = conn.prepareStatement(query);
+					
+					ResultSet resultSet = statement.executeQuery();
+					
+						while(resultSet.next()) {
+							x++;
+							System.out.println("+++++     " + x + ". "+ resultSet.getString("user_name"));
+						}
+						
+				}catch(SQLException e){
+					e.printStackTrace();
+					System.out.println("try again");
+					return;
+				}
+				
+			}
+			
+			public static boolean isJointNull(String user) {
+				boolean userExist = false;
+				
+				String query = "SELECT EXISTS(SELECT * FROM  customers WHERE user_name = ? AND joint_acc IS NULL)";
+				try(Connection conn = ConnectingBankUtil.getConnection()) {
+					PreparedStatement statement = conn.prepareStatement(query);
+					statement.setString(1, user);
+					
+					ResultSet resultSet = statement.executeQuery();
+					
+						return resultSet.next();
+						
+				}catch(SQLException e){
+					e.printStackTrace();
+					System.out.println("try again");
+					return false;
+				}
+			}
+			
+			public static boolean isJointPresent(long num) {
+				boolean userExist = false;
+				
+				String query = "SELECT EXISTS(SELECT joint_acc FROM customers WHERE joint_acc = ?)";
+				try(Connection conn = ConnectingBankUtil.getConnection()) {
+					PreparedStatement statement = conn.prepareStatement(query);
+					statement.setLong(1, num);
+					
+					ResultSet resultSet = statement.executeQuery();
+					
+						return resultSet.next();
+						
+				}catch(SQLException e){
+					e.printStackTrace();
+					System.out.println("try again");
+					return false;
+				}
+			}
+			
+			public Employees getEmployById(long id) {
+				try(Connection conn = ConnectingBankUtil.getConnection()){
+					String query = "SELECT * FROM employees WHERE employee_id = ?";
+
+					PreparedStatement statement = conn.prepareStatement(query);
+					
+					statement.setLong(1, id);
+					
+					ResultSet rs = statement.executeQuery();
+					
+					rs.next();
+					
+					Employees emp = new Employees();
+					
+					emp.setRegisterId(rs.getLong("employee_id"));
+					emp.setPass(rs.getString("pass_word"));
+					
+					return emp;
+				}catch(SQLException e){
+					e.printStackTrace();
+					return null;
+				}
+			}
+			
+			public static boolean isEmpPresent(long employ) {
+				boolean empExist = false;
+				
+				String query = "SELECT EXISTS(SELECT 1 FROM employees WHERE employee_id = ?)";
+				try(Connection conn = ConnectingBankUtil.getConnection()) {
+					PreparedStatement statement = conn.prepareStatement(query);
+					statement.setLong(1, employ);
+					
+					ResultSet resultSet = statement.executeQuery();
+					
+						return resultSet.next();
+						
+				}catch(SQLException e){
+					e.printStackTrace();
+					System.out.println("try again");
+					return false;
+				}
+				
 			}
 			
 			public static boolean isUserPresent(String user) {
@@ -137,7 +237,6 @@ public class CustomerDao {
 					statement.setString(1, user);
 					
 					ResultSet resultSet = statement.executeQuery();
-						System.out.println("correct");
 					
 						return resultSet.next();
 						

@@ -12,7 +12,7 @@ public class Customers implements Saveable{
 	private String number;
 	private int id;
 	private long privID;
-	private int joID;
+	private long joID;
 	private boolean isCreated;
 	
 	
@@ -24,11 +24,11 @@ public class Customers implements Saveable{
 	public void setPrivID(long privID) {
 		this.privID = privID;
 	}
-	public int getJoID() {
+	public long getJoID() {
 		return joID;
 	}
-	public void setJoID(int joID) {
-		this.joID = joID;
+	public void setJoID(long l) {
+		this.joID = l;
 	}
 	public String getUser() {
 		return user;
@@ -87,7 +87,7 @@ public class Customers implements Saveable{
 		// TODO Auto-generated constructor stub
 	}
 	public Customers(String user, String pass, String name, String email, String ssn, String number, int id,
-			int joID, boolean isCreated) {
+			long joID, boolean isCreated) {
 		super();
 		this.user = user;
 		this.pass = pass;
@@ -109,6 +109,7 @@ public class Customers implements Saveable{
 	
 	
 	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -116,7 +117,7 @@ public class Customers implements Saveable{
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
 		result = prime * result + (isCreated ? 1231 : 1237);
-		result = prime * result + joID;
+		result = prime * result + (int) (joID ^ (joID >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
